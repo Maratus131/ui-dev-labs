@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Usachev Marat Alexandrovich</title>
+</head>
+
+<body>
+    <header>
+        <h1>Список задач</h1>
+    </header>
+    <main>
+        <div class="newTask">
+            <h2 class="newTaskHeader">
+                Новая задача
+            </h2>
+            <form>
+                <input class="inputTask" type="text" placeholder="Название задачи">
+                <button class="addTask">+ Добавить</button>
+            </form>
+        </div>
+        <div class="tasks">
+            <div class="backLog">
+                <h3 class="headerBackLog">Бэклог</h3>
+                <div class="backLogTasks">
+                    <div class="backLogTask">
+                        Выучить JS
+                    </div>
+                    <div class="backLogTask">
+                        Выучить React
+                    </div>
+                    <div class="backLogTask">
+                        Сделать домашку
+                    </div>
+                </div>
+            </div>
+            <div class="inProcess">
+                <h3 class="headerInProcess">В процессе</h3>
+                <div class="inProcessTasks">
+                    <div class="inProcessTask">
+                        Выпить смузи
+                    </div>
+                    <div class="inProcessTask">
+                        Попить воды
+                    </div>
+                </div>
+            </div>
+            <div class="ready">
+                <h3 class="headerReady">Готово</h3>
+                <div class="readyTasks">
+                    <div class="readyTask">
+                        Позвонить маме
+                    </div>
+                    <div class="readyTask">
+                        Погладить кота
+                    </div>
+                </div>
+            </div>
+            <div class="trash">
+                <h3 class="headerTrash">Корзина</h3>
+                <div class="trashTasks">
+                    <div class="trashTask">
+                        Сходить погулять
+                    </div>
+                    <div class="trashTask">
+                        Прочитать Войну и Мир
+                    </div>
+                </div>
+                <button class="clearBtn">
+                    ♱ Очистить
+                </button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
