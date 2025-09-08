@@ -33,7 +33,7 @@ main {
     padding-bottom: 20px;
 }
 
-.newTask form {
+.addNewTask {
     display: flex;
     padding-left: 20px;
     gap: 20px;
@@ -82,12 +82,11 @@ main {
 }
 
 .headerBackLog {
+    display: inline-block;
     background-color: #E3E3E3;
-    padding: 8px 3px;
-    text-align: center;
-    width: 80px;
+    padding: 8px 12px;
     border-radius: 10px;
-    font-weight: 100;
+    font-weight: 500;
     margin-bottom: 10px;
     color: #4b4949;
 }
@@ -101,7 +100,7 @@ main {
 
 .backLogTask {
     border-left: 5px solid;
-    padding: 15px 90px 15px 8px;
+    padding: 12px 8px;
     background-color: white;
     border-radius: 6px;
     border-left-color: #E3E3E3;
@@ -112,12 +111,11 @@ main {
 }
 
 .headerInProcess {
+    display: inline-block;
     background-color: #D6E7FF;
-    padding: 8px 3px;
-    text-align: center;
-    width: 120px;
+    padding: 8px 12px;
     border-radius: 10px;
-    font-weight: 100;
+    font-weight: 500;
     margin-bottom: 10px;
     color: #204a85;
 }
@@ -131,7 +129,7 @@ main {
 
 .inProcessTask {
     border-left: 5px solid;
-    padding: 15px 90px 15px 8px;
+    padding: 12px 8px;
     background-color: white;
     border-radius: 6px;
     border-left-color: #D6E7FF;
@@ -143,9 +141,8 @@ main {
 
 .headerReady {
     background-color: #D7F9E0;
-    padding: 8px 3px;
-    text-align: center;
-    width: 80px;
+    display: inline-block;
+    padding: 8px 12px;
     border-radius: 10px;
     font-weight: 100;
     margin-bottom: 10px;
@@ -161,7 +158,7 @@ main {
 
 .readyTask {
     border-left: 5px solid;
-    padding: 15px 90px 15px 8px;
+    padding: 12px 8px;
     background-color: white;
     border-radius: 6px;
     border-left-color: #D7F9E0;
@@ -173,9 +170,8 @@ main {
 
 .headerTrash {
     background-color: #FBE3E3;
-    padding: 8px 3px;
-    text-align: center;
-    width: 95px;
+    padding: 8px 12px;
+    display: inline-block;
     border-radius: 10px;
     font-weight: 100;
     margin-bottom: 10px;
@@ -191,7 +187,7 @@ main {
 
 .trashTask {
     border-left: 5px solid;
-    padding: 15px 90px 15px 8px;
+    padding: 12px 8px;
     background-color: white;
     border-radius: 6px;
     border-left-color: #FBE3E3;
