@@ -1,17 +1,18 @@
 import { createElement } from '../framework/render.js';
 
-function createTaskBoardComponentTemplate() {
+function createClearButtonComponentTemplate() {
     return (
-        `
-            <section class="tasks">
-            </section>
-        `
+        `<div class='btn'>   
+        <button class="clearBtn">
+                    × Очистить
+                </button> 
+                </div>`
     );
 }
 
-export default class TaskBoardComponent {
+export default class ClearButtonComponent {
     getTemplate() {
-        return createTaskBoardComponentTemplate();
+        return createClearButtonComponentTemplate();
     }
 
     getElement() {

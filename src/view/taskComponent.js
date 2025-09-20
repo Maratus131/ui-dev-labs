@@ -1,13 +1,13 @@
 import { createElement } from '../framework/render.js';
 
 function createTaskComponentTemplate(task) {
-    const {title, status} = task;
+    const {title} = task;
     return (
-        `   <div class="backLogTasks">
-                    <div class="${status}">
+        `   <section class="tasksList">
+                    <div class="task">
                         ${title}
                     </div>
-                </div>`
+                </section>`
     );
 }
 

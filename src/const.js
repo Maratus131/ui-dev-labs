@@ -7,7 +7,7 @@ const Status = {
 
 const StatusLabel = {
     [Status.BACKLOG]: `Бэклог`,
-    [Status.BACKLOG]: `В процессе`,
+    [Status.PROCESSING]: `В процессе`,
     [Status.READY]: `Готов`,
     [Status.TRASH]: `Корзина`,
 };

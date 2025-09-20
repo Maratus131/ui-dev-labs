@@ -2,17 +2,17 @@ export const tasks = [
     {
         id:'1',
         title:'Приготовить кушать',
-        status:'backlog',
+        status:'backLog',
     },
     {
         id:'2',
         title:'Помыть полы',
-        status:'backlog',
+        status:'backLog',
     },
     {
         id:'3',
         title:'Устроиться на работу',
-        status:'backlog',
+        status:'backLog',
     },
     {
         id:'4',
@@ -24,5 +24,15 @@ export const tasks = [
         title:'Выучить Spring',
         status:'inProcess',
     },
+    {
+        id:'6',
+        title:'Посетить пары',
+        status:'ready',
+    },
+    {
+        id:'7',
+        title:'Сходить в кино',
+        status:'trash'
+    }
 
 ]

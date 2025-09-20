@@ -1,11 +1,14 @@
 import TaskListComponent from "../view/taskListComponent.js";
 import TaskComponent from "../view/taskComponent.js";
 import TaskBoardComponent from "../view/taskBoardComponent.js";
-import {render} from "../framework/render.js";
+import { render } from "../framework/render.js";
+import { Status, StatusLabel } from "../const.js";
+import ClearButtonComponent from "../view/clearButtonComponent.js";
 
 export default class TaskBoardPresenter {
     taskListComponent = new TaskListComponent();
 
+    #clearBtnComponent = new ClearButtonComponent();
     #boardContainer = null;
     #tasksModel = null;
 
@@ -13,7 +16,7 @@ export default class TaskBoardPresenter {
 
     #boardTasks = [];
 
-    constructor({boardContainer, tasksModel}) {
+    constructor({ boardContainer, tasksModel}) {
         this.#boardContainer = boardContainer;
         this.#tasksModel = tasksModel;
     }
@@ -22,14 +25,20 @@ export default class TaskBoardPresenter {
         this.#boardTasks = [...this.#tasksModel.getTasks()];
 
         render(this.#tasksBoardComponent, this.#boardContainer);
-        for (let i = 0; i < 4; i++) {
-            const tasksListComponent = new TaskListComponent();
+        Object.values(Status).forEach(element => {
+            const tasksListComponent = new TaskListComponent(element, StatusLabel[element]);
             render(tasksListComponent, this.#tasksBoardComponent.getElement());
 
-            for (let j = 0; j < 4; j++) {
-                const taskComponent = new TaskComponent({task: this.#boardTasks[j]});
+            const filteredTasks = this.#boardTasks.filter(task => task.status === element); 
+
+            for (let j = 0; j < filteredTasks.length; j++) {
+                const taskComponent = new TaskComponent({ task: filteredTasks[j] });
                 render(taskComponent, tasksListComponent.getElement());
             }
-        }
+
+            if (element === Status.TRASH) {
+                render(this.#clearBtnComponent, tasksListComponent.getElement());
+            }
+        });
     }
 }
