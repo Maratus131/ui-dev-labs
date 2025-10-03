@@ -27,7 +27,7 @@ export const tasks = [
     {
         id:'6',
         title:'Посетить пары',
-        status:'ready',
+        status:'trash',
     },
     {
         id:'7',

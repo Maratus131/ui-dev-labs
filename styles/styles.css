@@ -158,3 +158,12 @@ main {
 .clearBtn:active {
     transform: scale(0.95);
 }
+
+.nullTask {
+    border-left: 5px solid;
+    padding: 12px 8px;
+    background-color: white;
+    opacity: 0.5;
+    border: 2px dotted gray;
+    border-radius: 6px;
+}
