@@ -9,28 +9,34 @@ import PlugComponent from "../view/plugComponent.js";
 export default class TaskBoardPresenter {
     #taskListComponent = new TaskListComponent();
 
-    #clearBtnComponent = new ClearButtonComponent();
+    handleClearButtonClick = () => {
+        this.clearBucket();
+    };
+
+    #clearBtnComponent = new ClearButtonComponent({
+        onClick: this.handleClearButtonClick
+    });
+
+
     #plugComponent = new PlugComponent();
     #boardContainer = null;
     #tasksModel = null;
 
     #tasksBoardComponent = new TaskBoardComponent();
 
-    #boardTasks = [];
-
-    constructor({ boardContainer, tasksModel}) {
+    constructor({ boardContainer, tasksModel }) {
         this.#boardContainer = boardContainer;
         this.#tasksModel = tasksModel;
+
+        this.#tasksModel.addObserver(this.#handleModelChange.bind(this))
     }
 
     init() {
-        this.#boardTasks = [...this.#tasksModel.tasks];
-
         this.#renderBoard()
     }
 
     #renderTask(task, container) {
-        const taskComponent = new TaskComponent({task});
+        const taskComponent = new TaskComponent({ task });
 
         render(taskComponent, container);
     }
@@ -43,32 +49,61 @@ export default class TaskBoardPresenter {
         return tasksListComponent
     }
 
-    #renderClearButton(status, container) {
-        if (status === Status.TRASH) {
+    #renderClearButton(status, container, tasks) {
+        if (status === Status.TRASH && tasks.length > 0) {
             render(this.#clearBtnComponent, container)
         }
     }
 
     #renderPlugComponent(tasks, container) {
         if (tasks.length === 0) {
-            render(this.#plugComponent, container)
+            const plugTask = new PlugComponent();
+            render(plugTask, container);
         }
     }
+
 
     #renderBoard() {
         render(this.#tasksBoardComponent, this.#boardContainer);
         Object.values(Status).forEach(element => {
             const tasksListComponent = this.#renderTasksList(element, this.#tasksBoardComponent.element);
 
-            const filteredTasks = this.#boardTasks.filter(task => task.status === element); 
-            
+            const filteredTasks = this.tasks.filter(task => task.status === element);
+
             this.#renderPlugComponent(filteredTasks, tasksListComponent.element)
 
             for (let j = 0; j < filteredTasks.length; j++) {
                 this.#renderTask(filteredTasks[j], tasksListComponent.element)
             }
 
-            this.#renderClearButton(element, tasksListComponent.element)
+            this.#renderClearButton(element, tasksListComponent.element, filteredTasks)
         });
+    }
+
+    createTask() {
+        const taskTitle = document.querySelector('.inputTask').value.trim();
+
+        if (!taskTitle)
+            return;
+
+        this.#tasksModel.addTask(taskTitle);
+        document.querySelector('.inputTask').value = '';
+    }
+
+    clearBucket() {
+        this.#tasksModel.clearBucket();
+    }
+
+    #handleModelChange() {
+        this.#clearBoard();
+        this.#renderBoard();
+    }
+
+    #clearBoard() {
+        this.#tasksBoardComponent.element.innerHTML = '';
+    }
+
+    get tasks() {
+        return this.#tasksModel.tasks;
     }
 }

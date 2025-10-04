@@ -6,14 +6,24 @@ import TaskBoardPresenter from './presenter/taskBoardPresenter.js';
 import TasksModel from './model/taskModel.js';
 
 const headerContainer = document.querySelector('.header');
-const addTaskFormContainer= document.querySelector('.addTaskForm');
+
+const addTaskContainer = document.querySelector('.addTaskForm')
 const taskBoardContainer = document.querySelector('.container');
 
 const tasksModel = new TasksModel();
 const taskBoardPresenter = new TaskBoardPresenter({boardContainer: taskBoardContainer, tasksModel});
 
-render(new HeaderComponent(), headerContainer, RenderPosition.BEFOREBEGIN);
-render(new AddTaskFormComponent(), addTaskFormContainer, RenderPosition.BEFOREBEGIN);
+const formAddTaskComponent = new AddTaskFormComponent({
+    onClick: handleNewTaskButtonClick
+});
 
+function handleNewTaskButtonClick() {
+    taskBoardPresenter.createTask();
+}
+
+render(new HeaderComponent(), headerContainer, RenderPosition.BEFOREBEGIN);
+render(formAddTaskComponent, addTaskContainer,RenderPosition.BEFOREBEGIN);
 
 taskBoardPresenter.init();
+
+//addTaskForm
