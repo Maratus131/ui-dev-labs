@@ -2,18 +2,18 @@ import { createElement } from '../framework/render.js';
 import { AbstractComponent } from '../framework/view/abstractComponent.js';
 
 function createTaskComponentTemplate(task) {
-    const {title} = task;
+    const { title, id } = task;
     return (
-        `   <section class="tasksList">
-                    <div class="task">
-                        ${title}
-                    </div>
-                </section>`
+        `<section class="tasksList">
+      <div class="task" data-task-id="${id}">
+        ${title}
+      </div>
+    </section>`
     );
 }
 
-export default class TaskComponent extends AbstractComponent{
-    constructor({task}) {
+export default class TaskComponent extends AbstractComponent {
+    constructor({ task }) {
         super()
         this.task = task;
         this.#afterCreateElement();
@@ -28,10 +28,13 @@ export default class TaskComponent extends AbstractComponent{
     }
 
     #makeTaskDraggable() {
-        this.element.setAttribute(`draggable`, true);
-
+        this.element.setAttribute('draggable', true);
         this.element.addEventListener('dragstart', (event) => {
+            this.element.classList.add('dragging');
             event.dataTransfer.setData('text/plain', this.task.id);
+        });
+        this.element.addEventListener('dragend', () => {
+            this.element.classList.remove('dragging');
         });
     }
 }
