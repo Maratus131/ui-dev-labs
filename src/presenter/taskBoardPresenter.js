@@ -7,8 +7,6 @@ import ClearButtonComponent from "../view/clearButtonComponent.js";
 import PlugComponent from "../view/plugComponent.js";
 
 export default class TaskBoardPresenter {
-    #taskListComponent = new TaskListComponent();
-
     handleClearButtonClick = () => {
         this.clearBucket();
     };
@@ -17,8 +15,6 @@ export default class TaskBoardPresenter {
         onClick: this.handleClearButtonClick
     });
 
-
-    #plugComponent = new PlugComponent();
     #boardContainer = null;
     #tasksModel = null;
 
@@ -42,7 +38,10 @@ export default class TaskBoardPresenter {
     }
 
     #renderTasksList(status, container) {
-        const tasksListComponent = new TaskListComponent(status, StatusLabel[status]);
+        const tasksListComponent = new TaskListComponent(
+            status, 
+            StatusLabel[status], 
+            this.#handleTaskDrop.bind(this));
 
         render(tasksListComponent, container)
 
@@ -105,5 +104,9 @@ export default class TaskBoardPresenter {
 
     get tasks() {
         return this.#tasksModel.tasks;
+    }
+
+    #handleTaskDrop(taskId, newStatus) {
+        this.#tasksModel.updateTaskStatus(taskId, newStatus);
     }
 }
