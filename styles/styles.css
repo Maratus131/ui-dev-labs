@@ -167,3 +167,12 @@ main {
     border: 2px dotted gray;
     border-radius: 6px;
 }
+
+.boardNoTasks {
+    margin-top: 10px;
+    color:#ad5050;
+}
+
+.hidden {
+    display: none;
+}
